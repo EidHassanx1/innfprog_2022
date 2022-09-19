@@ -23,10 +23,12 @@
         <aside id="hud-inventory">
             <h3>Armory</h3>
             <table id="showhide">
+                <!--
                 <tr>
                     <td><img src="img/longsword.png"></td>
                     <td>Level: <span id="weapon-longsword"></span></td>
                 </tr>
+              
                 <tr>
                     <td><img src="img/warhammer.png"></td>
                     <td>Level: <span id="weapon-warhammer"></span></td>
@@ -39,34 +41,95 @@
                     <td><img src="img/armour.png"></td>
                     <td>Level: <span id="weapon-armour"></span></td>
                 </tr>
+            -->
             </table>
         </aside>
     </div>
-
     <script>
         //Oppgave 1: Spillernavn
-        const playerName = "Hiof"
+        const playerName = "Mr.EiiiD"
         document.getElementById("playername").innerHTML = playerName
         //Oppgave 2: Penger
         let coins = 15
-        document.getElementById("coins-count").innerHTML = coins
+        if(coins > 0) {
+            coinsPrint = coins
+        } else {
+            coinsPrint = "Collect some coins"
+        }
+        document.getElementById("coins-count").innerHTML = coinsPrint
         //Oppgave 3: Liv
-        let lives = 5
-        document.getElementById("lives-count").innerHTML = lives
+        let lives = 1
+        const livesPrint = document.getElementById("lives-count")
+        livesPrint.innerHTML = lives
+        //workshop 2 oppgave 3:
+        if(lives < 2 ) {
+            livesPrint.style.color = "red"
+        }
+
         //Oppgave 4: Våpen-nivåer:
-        let longsword = 1
-        let warhammer = 4
-        let battleaxe = 2
-        let armour = 3
+        let longsword = 12
+        let warhammer = 14
+        let battleaxe = 22
+        let armour = 31
+
+        //Workshop 2, oppgave2
+       /* if(longsword >= 10) {
+            document.getElementById("weapon-longsword").style.color = "gold"
+        }
+        
+        const warhammerElement = document.getElementById("weapon-warhammer")
+        if(warhammer >= 10) {
+            warhammerElement.style.color = "gold"
+        }
+        const battleaxeElement = document.getElementById("weapon-battleaxe")
+        if(battleaxe >= 10) {
+            battleaxeElement.style.color = "gold"
+        }
+        const armourElement = document.getElementById("weapon-armour")
+        if(armour >= 10) {
+            armourElement.style.color = "gold"
+        }
         document.getElementById("weapon-longsword").innerHTML = longsword
-        document.getElementById("weapon-warhammer").innerHTML = warhammer
-        document.getElementById("weapon-battleaxe").innerHTML = battleaxe
-        document.getElementById("weapon-armour").innerHTML = armour
+        warhammerElement.innerHTML = warhammer
+        battleaxeElement.innerHTML = battleaxe
+        armourElement.innerHTML = armour
+        */
+
+        //Workshop 2 oppgave 4
+        if(longsword > 0) {
+            document.getElementById("showhide").innerHTML = `
+            <tr>
+                    <td><img src="img/longsword.png"></td>
+                    <td>Level: <span id="weapon-longsword">${longsword}</span></td>
+                </tr>
+            `
+            if(longsword >= 10) {
+            document.getElementById("weapon-longsword").style.color = "gold"
+        }
+        }
+
+        if(longsword > 0) {
+            document.getElementById("weapon-longsword").style.color = "gold"
+        }
+
+        if(warhammer > 0) {
+            armoryTable.innerHTML = `
+            <tr>
+                <td><img src"img/warhammer.png"></td>
+                <td>level: <span id="weapon-warhammer">${warhammer}</span></td>            
+            </tr>
+            `
+        if(warhammer >= 10) {
+            document.getElementById("weapon-warhammer").style.color = "gold"
+        }
+        }
+
+
         //Oppgave 5: Utregning av poeng
         let points = (coins * 5) + (longsword * 5) + (warhammer * 15) + (battleaxe * 20) + (armour * 25)
         document.getElementById("points-count").innerHTML = points
         //Oppgave 6: Utskrift av level
-        let level = 1
+        let level = 25
         document.getElementById("level-count").innerHTML = level
     </script>
 </body>
