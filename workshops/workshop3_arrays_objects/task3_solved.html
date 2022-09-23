@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Workshop 1: Variabler</title>
-    <link href="task3.css" rel="stylesheet" media="all">
+    <link href="task4.css" rel="stylesheet" media="all">
 </head>
 <body>
     <div id="gamearea">
@@ -18,6 +18,17 @@
             </div>
             <div id="points"><img src="img/points.png" /> <span id="points-count">0</span></div>
             <div id="level">Level: <span id="level-count">0</span></div>
+        </section>
+        <section id="playarea">
+             <div>
+            <button type="button" onClick="modifyCoins(5)">add 5 coins</button>
+            <button type="button" onClick="modifyCoins(-5)">loose 5 coins</button>
+            </div>
+            <div>
+            <button type="button" onClick="modifyLife(1)">gain 1 life</button>
+            <button type="button" onClick="modifyLife(-1)">loose 1 life</button>
+            </div>
+            <button type="button" onClick="restartGame()">RESTART GAME</button>
         </section>
         <aside id="hud-inventory">
             <h3>Armory</h3>
@@ -37,6 +48,45 @@
             lives: 3,
             level: 1
         }
+
+        //oppgave 1
+        function modifyCoins(coins) {
+            gameConfig.coins = gameConfig.coins + coins
+            if (gameConfig.coins <= 0) {
+                gameConfig.coins = 0
+                document.getElementById("coins-count").innerHTML = "Get some coins"
+            }
+            else {
+                document.getElementById("coins-count").innerHTML = gameConfig.coins
+            }
+            modifyPoints(gameConfig.coins, armoryPoints)
+        }
+
+        function modifyLife(lives) {
+            gameConfig.lives = gameConfig.lives + lives
+            document.getElementById("lives-count").innerHTML = gameConfig.lives
+        }
+
+        function modifyPoints(coins, armoryPoints) {
+            let points = armoryPoints + (coins * 5)
+            document.getElementById("points-count").innerHTML = points
+        }
+
+        function restartGame() {
+            gameConfig.coins = 50
+            gameConfig.lives = 3
+            gameConfig.level = 1
+
+            document.getElementById("coins-count").innerHTML = gameConfig.coins
+            document.getElementById("lives-count").innerHTML = gameConfig.lives
+            document.getElementById("level-count").innerHTML = gameConfig.level
+
+            for (weapon of armory) {
+                weapon.level = 1
+                console.log(weapon)
+            }
+        }
+
         //PLAYERNAME - INITITAL PRINT
         //const playerName = "Hiof"
         document.getElementById("playername").innerHTML = gameConfig.playerName
@@ -76,25 +126,25 @@
             {
                 weaponName: "Longsword",
                 weaponIcon: "longsword",
-                level: 15,
+                level: 0,
                 value: 5
             },
             {
                 weaponName: "Warhammer",
                 weaponIcon: "warhammer",
-                level: 18,
+                level: 0,
                 value: 15
             },
             {
                 weaponName: "Battleaxe",
                 weaponIcon: "battleaxe",
-                level: 10,
+                level: 0,
                 value: 20
             },
             {
                 weaponName: "Armour",
                 weaponIcon: "armour",
-                level: 12,
+                level: 0,
                 value: 25
             }
         ]
